@@ -18,7 +18,7 @@ function AllPetCard () {
     .then(res => {
       store.dispatch(addMatches(res.data))
     })
-  }, [setMatch]);
+  }, [match]);
   // Remove current users pet from all pets 
   const possiblePets = allPets.filter(
     pet => pet._id !== currentUser.pets[0]._id

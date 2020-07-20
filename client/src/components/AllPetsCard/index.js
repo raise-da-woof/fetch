@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import store from '../../utils/store'
-import { addPets, addRandomNum } from '../../utils/actions'
+import { addPets, addRandomNum, addMatches } from '../../utils/actions'
 import API from '../../utils/API'
 import { Card, CardTitle, Icon, Col, Row, Button } from 'react-materialize'
 import 'materialize-css'
@@ -12,6 +12,13 @@ function AllPetCard () {
   const [ cardAn, setCardAn ] = useState('animate__animated animate__fadeIn')
   const [ match, setMatch ] = useState('hideMatch')
   const [ btns, setBtns ] = useState('')
+
+  useEffect( () => {
+    API.getUserMatches(currentUser._id)
+    .then(res => {
+      store.dispatch(addMatches(res.data))
+    })
+  }, [setMatch]);
   // Remove current users pet from all pets 
   const possiblePets = allPets.filter(
     pet => pet._id !== currentUser.pets[0]._id

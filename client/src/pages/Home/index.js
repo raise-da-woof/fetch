@@ -12,12 +12,6 @@ function Home () {
   const { checkAuth, setCheckAuth } = store.getState(false) 
   const { currentUser, Auth, matches, allPets } = store.getState()
   // UseEffect hook to get matches
-  useEffect( () => {
-    API.getUserMatches(currentUser._id)
-    .then(res => {
-      store.dispatch(addMatches(res.data))
-    })
-  }, []);
   if ( allPets.length === 0 ){
     API.getAllPets()
     .then( petsRes => {

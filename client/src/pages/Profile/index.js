@@ -12,16 +12,21 @@ import './styles.css'
 // import DogGif from '../../components/Dog-gif/dog-up-gif.gif'
 
 function Profile () {
+  let history = useHistory()
   // State from store
   const { currentUser, Auth } = store.getState()
 
   // UseEffect hook to get matches
   useEffect(() => {
+    if ( currentUser === undefined ){
+      history.push('/')
+    }
+    else {
     API.getUserMatches(currentUser._id).then(res => {
       store.dispatch(addMatches(res.data))
     })
+  }
   }, [])
-  let history = useHistory()
   // Check user Auth token, if its not vaild send user to home page
   API.verifyToken(Auth)
     .then(res => {
@@ -32,6 +37,10 @@ function Profile () {
     })
   // Function to check if current user has pets
   const formLoad = () => {
+    if ( currentUser === undefined ) {
+      history.push('/')
+    }
+    else {
     if (currentUser.pets.length > 0) {
       return (
         <>
@@ -50,6 +59,7 @@ function Profile () {
         </Container>
       )
     }
+  }
   }
   return <div className='container'>{formLoad()}</div>
 }

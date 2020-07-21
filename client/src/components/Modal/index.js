@@ -36,6 +36,7 @@ function Modals () {
       const res = await API.loginUser(user)
       store.dispatch(addCurrentUser(res.data.user))
       store.dispatch(addAuth(res.data.token))
+      localStorage.setItem('oAuth', res.data.token)
       const petsRes = await API.getAllPets()
       store.dispatch(addPets(petsRes.data))
       return history.push('/match')
@@ -63,6 +64,7 @@ function Modals () {
           password: user.password
         })
         store.dispatch(addAuth(authRes.data.token))
+        localStorage.setItem('oAuth', authRes.data.token)
         const petsRes = await API.getAllPets()
         store.dispatch(addPets(petsRes.data))
         return history.push('/profile')

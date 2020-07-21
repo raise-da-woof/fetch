@@ -36,7 +36,6 @@ module.exports = {
       const encoded = data.toString("base64");
       const imgurRes = await imgur.uploadBase64(encoded);
       const uploadRes = imgurRes.data;
-      console.log("Upload Response:", uploadRes);
       return res.json(uploadRes);
     } catch (err) {
       return res.status(500).json(err);

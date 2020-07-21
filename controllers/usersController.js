@@ -70,11 +70,6 @@ module.exports = {
       const payload = { 
         userData: newUser
       };
-
-      console.log('this is new user')
-      console.log(payload)
-
-
       // Sign token
       jwt.sign(
         payload,
@@ -130,7 +125,6 @@ module.exports = {
   remove: async function ({ params }, res) {
     try {
       const userData = await db.User.findByIdAndDelete(params.id);
-      console.log(userData.pets[0]);
       if (userData.pets.length > 0) {
         const removedPet = await db.Pet.findByIdAndDelete(userData.pets[0]);
         if (userData.matches.length > 0) {

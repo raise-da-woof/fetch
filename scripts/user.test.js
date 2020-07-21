@@ -90,45 +90,45 @@ let ObjectId = "5f14e0803e30bc694a63ed0a"; // <===== Add a userId from your data
 
 
 // ==== CREATE USER ====
-const body = {
-  username: "Test Dude",
-  email: "test1@g.com",
-  password: "123456",
-  pets: [],
-  matches: [],
-  messages: [],
-};
-(async function() {
-  try {
-    const newUser = await db.User.create(body);
-    // Create JWT Payload
-    const payload = { id: newUser._id, username: newUser.username };
-    // Sign token
-    jwt.sign(
-      payload,
-      keys.secretOrKey,
-      {
-        expiresIn: 31556926, // 1 year in seconds
-      },
-      (err, token) => {
-        if (err) {
-          return console.log("No token created")
-        }
-        newUser.password = undefined;
-        newUser.token = token;
-        return console.log(newUser);
-      }
-    );
-  } catch (err) {
-    if (err.name == "ValidationError") {
-      console.log(err.message)
-    } else if (err.name == "MongoError") {
-      console.log(err.message)
-    } else {
-      console.log(err.message)
-    }
-  }
-}())
+// const body = {
+//   username: "Test Dude",
+//   email: "test1@g.com",
+//   password: "123456",
+//   pets: [],
+//   matches: [],
+//   messages: [],
+// };
+// (async function() {
+//   try {
+//     const newUser = await db.User.create(body);
+//     // Create JWT Payload
+//     const payload = { id: newUser._id, username: newUser.username };
+//     // Sign token
+//     jwt.sign(
+//       payload,
+//       keys.secretOrKey,
+//       {
+//         expiresIn: 31556926, // 1 year in seconds
+//       },
+//       (err, token) => {
+//         if (err) {
+//           return console.log("No token created")
+//         }
+//         newUser.password = undefined;
+//         newUser.token = token;
+//         return console.log(newUser);
+//       }
+//     );
+//   } catch (err) {
+//     if (err.name == "ValidationError") {
+//       console.log(err.message)
+//     } else if (err.name == "MongoError") {
+//       console.log(err.message)
+//     } else {
+//       console.log(err.message)
+//     }
+//   }
+// }())
 
 
 //  ==== UPDATE USER ====

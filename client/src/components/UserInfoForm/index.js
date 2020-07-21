@@ -10,7 +10,10 @@ import 'materialize-css'
 function UserInfoForm () {
   // State Management
   const { currentUser } = store.getState()
-  const [type, setType] = useState('none')
+  const [error, setError] = useState({
+    type: 'none',
+    msg: ''
+  })
   const [username, setUsername] = useState(currentUser.username)
   const [email, setEmail] = useState(currentUser.email)
   const history = useHistory()
@@ -23,14 +26,14 @@ function UserInfoForm () {
     try {
       const updateUserRes = await API.updateUser(currentUser._id, user)
       store.dispatch(addCurrentUser(updateUserRes.data))
-      setType('success')
+      setError({ ...error, type: 'success' })
       setTimeout(() => {
-        setType('none')
+        setError({ ...error, type: 'none' })
       }, 2000)
     } catch (err) {
-      setType('danger')
+      setError({ ...error, type: 'danger' })
       setTimeout(() => {
-        setType('none')
+        setError({ ...error, type: 'none' })
       }, 2000)
     }
   }
@@ -45,7 +48,7 @@ function UserInfoForm () {
 
   return (
     <>
-      <Alerts type={type} />
+      <Alerts error={error} />
       <TextInput
         id='TextInput-4'
         label='UserName'

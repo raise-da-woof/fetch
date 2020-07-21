@@ -20,21 +20,24 @@ function PetCard () {
     isVaccinated: currentUser.pets[0].isVaccinated,
     userId: currentUser._id
   })
-  const [type, setType] = useState('none')
+  const [error, setError] = useState({
+    type: 'none',
+    msg: ''
+  })
   const history = useHistory()
   const updatePet = async e => {
     e.preventDefault()
     try {
       const updatePetRes = await API.updatePet(currentUser.pets[0]._id, pet)
       store.dispatch(updateCurrentUserPet(updatePetRes.data))
-      setType('success')
+      setError({ ...error, type: 'success' })
       setTimeout(() => {
-        setType('none')
+        setError({ ...error, type: 'none' })
       }, 2000)
     } catch (err) {
-      setType('danger')
+      setError({ ...error, type: 'danger' })
       setTimeout(() => {
-        setType('none')
+        setError({ ...error, type: 'none' })
       }, 2000)
     }
   }
@@ -45,9 +48,9 @@ function PetCard () {
       store.dispatch(deleteCurrentUserPet())
       history.push('/profile')
     } catch (err) {
-      setType('danger')
+      setError({ ...error, type: 'danger' })
       setTimeout(() => {
-        setType('none')
+        setError({ ...error, type: 'none' })
       }, 2000)
     }
   }
@@ -56,7 +59,7 @@ function PetCard () {
       return (
         <>
           <img src={pet.image} />
-          <Alerts type={type} />
+          <Alerts error={error} />
           <TextInput
             className='upload-btn'
             id='TextInput-4'

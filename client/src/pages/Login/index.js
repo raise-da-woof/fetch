@@ -16,12 +16,17 @@ function Login () {
       API.verifyToken(authCheck)
       .then ( res => {
         store.dispatch(addAuth(authCheck))
-        store.dispatch(addCurrentUser(res.data.userData))
-        API.getAllPets()
-        .then ( petRes => {
-          store.dispatch(addPets(petRes.data))
-          console.log(res)
-          histoy.push('/match')
+        API.getUserById(res.data.userData._id)
+        .then (user => {
+          console.log('userdata', user)
+          store.dispatch(addCurrentUser(user.data))
+          console.log('state', store.getState())
+          API.getAllPets()
+          .then ( petRes => {
+            store.dispatch(addPets(petRes.data))
+            console.log(res)
+            histoy.push('/match')
+          })
         })
       })
     }

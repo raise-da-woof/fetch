@@ -64,6 +64,7 @@ function UserInfoForm () {
         validate
       />
       <Button
+        className="update-btn"
         node='button'
         style={{
           marginRight: '5px'
@@ -78,7 +79,7 @@ function UserInfoForm () {
           <Button flat modal='close' node='button'>
             Cancel
           </Button>,
-          <Button node='button' waves='light' onClick={ deleteUser }>
+          <Button className="delete-btn" node='button' waves='light' onClick={ deleteUser }>
             Delete Account
           </Button>,
         ]}
@@ -96,7 +97,7 @@ function UserInfoForm () {
           preventScrolling: false,
           startingTop: '4%'
         }}
-        trigger={<Button node='button' style={{ marginRight: '5px'}} >Delete Account</Button>}
+        trigger={<Button className="delete-btn" node='button' style={{ marginRight: '5px'}} >Delete Account</Button>}
       >
         <p>
           WARNING, by clicking "Delete Account" you will lose all your information and no longer have access to your account.

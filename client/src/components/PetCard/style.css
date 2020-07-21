@@ -1,0 +1,17 @@
+.update-btn {
+  background: linear-gradient(262deg, #71e4d3, #1bd48b);
+}
+
+.update-btn:hover {
+    background: linear-gradient(262deg, #1bd48b, #71e4d3);
+  border-radius: 3px;
+}
+
+.delete-btn {
+  background: linear-gradient(86deg, #fd267d, #ff7854);
+}
+
+.delete-btn:hover {
+  background: linear-gradient(86deg, #ff7854, #fd267d);
+  border-radius: 3px;
+}

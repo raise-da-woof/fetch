@@ -10,6 +10,13 @@
 }
 
 /* login modal */
+.login-btn-modal:disabled{
+    background: #dfdfdf !important;
+    -webkit-animation: none !important;
+    -moz-animation: none !important;
+    animation: none !important;
+}
+
 .login-btn-modal{
     width: 100%;
     height: 50px;
@@ -58,6 +65,13 @@
 }
 
 /* Signup btn */
+.modal-signup-btn:disabled{
+    background: #dfdfdf !important;
+    -webkit-animation: none !important;
+    -moz-animation: none !important;
+    animation: none !important;
+}
+
 .modal-signup-btn{
     width: 100%;
     height: 50px;

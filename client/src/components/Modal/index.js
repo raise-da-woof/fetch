@@ -129,7 +129,7 @@ function Modals () {
                 <label for='password'>Password</label>
               </div>
               <Alerts error={error} />
-              <Button className='login-btn-modal btn' onClick={login}>
+              <Button className='login-btn-modal btn' disabled={!email || !password} onClick={login}>
                 Login
               </Button>
             </div>
@@ -196,7 +196,7 @@ function Modals () {
               </div>
               {matchPassword()}
               <Alerts error={error} />
-              <Button className='modal-signup-btn' node='button' onClick={createUser}>
+              <Button className='modal-signup-btn' node='button' disabled={!username || !email || !password || !confirmPassword} onClick={createUser}>
                 Signup
               </Button>
             </div>

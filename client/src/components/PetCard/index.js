@@ -6,6 +6,7 @@ import store from '../../utils/store'
 import Alerts from '../Alerts'
 import { updateCurrentUserPet, deleteCurrentUserPet } from '../../utils/actions'
 import 'materialize-css'
+import './style.css'
 
 function PetCard () {
   const { currentUser, Auth } = store.getState()
@@ -169,6 +170,7 @@ function PetCard () {
             value={pet.bio}
           />
           <Button
+            className="update-btn"
             node='button'
             style={{
               marginRight: '5px'
@@ -183,7 +185,7 @@ function PetCard () {
               <Button flat modal='close' node='button'>
                 Cancel
               </Button>,
-              <Button node='button' waves='light' onClick={ deletePet }>
+              <Button className="delete-btn" node='button' waves='light' onClick={ deletePet }>
                 Delete Pet
               </Button>
             ]}
@@ -202,7 +204,7 @@ function PetCard () {
               startingTop: '4%'
             }}
             trigger={
-              <Button node='button' style={{ marginRight: '5px' }}>
+              <Button className="delete-btn" node='button' style={{ marginRight: '5px' }}>
                 Delete Pet
               </Button>
             }

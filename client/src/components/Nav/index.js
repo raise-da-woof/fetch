@@ -6,7 +6,7 @@ import './style.css'
 function Nav () {
   
   const { pathname } = useLocation()
-  const possiblePaths = [ '/match', '/profile', '/messages', '/meettheteam', '/ourmission']
+  const possiblePaths = [ '/match', '/profile', '/messages']
   const logout = () => {
     localStorage.setItem('oAuth', '')
   }

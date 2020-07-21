@@ -169,7 +169,6 @@ function AddPetModal () {
             accept='image/png, image/jpeg'
             onChange={handleImageSelection}
           />
-
           <ReactCrop
             src={upImg}
             onImageLoaded={onLoad}

@@ -6,7 +6,6 @@ import './style.css'
 function Login () {
   return (
     <div>
-      {/* <div className="slides"> */}
       <div class="crossfade">
         <figure></figure>
         <figure></figure>
@@ -15,7 +14,6 @@ function Login () {
         <figure></figure>
       </div>
       <Modals />
-      {/* </div> */}
     </div>
   )
 }

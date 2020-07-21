@@ -53,6 +53,7 @@ function UserInfoForm () {
     e.preventDefault()
     try {
       const removeUserRes = await API.removeUser(currentUser._id)
+      localStorage.setItem('oAuth', '')
       history.push('/')
     } catch (err) {
     }

@@ -43,7 +43,7 @@ module.exports = {
       bcrypt.compare(body.password, user.password).then((isMatch) => {
         if (isMatch) {
           // User exists - Create JWT Payload
-          const payload = { id: user._id, username: user.username };
+          const payload = { userData: user};
           // Sign token
           jwt.sign(payload, keys.secretOrKey,
             {
@@ -67,7 +67,14 @@ module.exports = {
     try {
       const newUser = await db.User.create(body);
       // Create JWT Payload
-      const payload = { id: newUser._id, username: newUser.username };
+      const payload = { 
+        userData: newUser
+      };
+
+      console.log('this is new user')
+      console.log(payload)
+
+
       // Sign token
       jwt.sign(
         payload,

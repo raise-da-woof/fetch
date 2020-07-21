@@ -6,10 +6,14 @@ import './style.css'
 function Login () {
   return (
     <div>
-      <div className="slides">
-      <Modals />
-
+      <div class="crossfade">
+        <figure></figure>
+        <figure></figure>
+        <figure></figure>
+        <figure></figure>
+        <figure></figure>
       </div>
+      <Modals />
     </div>
   )
 }

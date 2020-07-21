@@ -8,7 +8,7 @@ function MeetTheTeam () {
         <h1>Meet the Team</h1>
         <Row>
             <Col s={12} m={6}>
-                <h1>Alex Bailon</h1>
+                <h2>Alex Bailon</h2>
                 <img src='https://avatars2.githubusercontent.com/u/59755671?s=460&u=283873d7bfe90d9df1d3dd5afd5ed79d23e9c73e&v=4'/>
                 <p>
                 Full-Stack Web Developer with a background in customer service ensuring 
@@ -27,23 +27,39 @@ function MeetTheTeam () {
                 </p>
             </Col>
             <Col s={12} m={6}>
-                <h1>Garrett Gassensmith</h1>
-                <img src=''/>
+                <h2>Garrett Gassensmith</h2>
+                <img src='https://media-exp1.licdn.com/dms/image/C4E03AQGZQIHB0TAFXw/profile-displayphoto-shrink_400_400/0?e=1600905600&v=beta&t=APDwjH-ToW9oYXyam5SbCC4ni_l9vuALlSZlxyQlZPo'/>
                 <p>
-                    
+                Full-Stack Web Developer with a background in video production and digital media.
+                 Interested in development challenges that require strategic problem-solving and 
+                 foster new learning experiences.
+                </p>
+                <p>
+                    LinkedIn: <a href="https://www.linkedin.com/in/garrett-gassensmith-5ab01880/">Garrett Gassensmith</a>
+                </p>
+                <p>
+                    GitHub: <a href="https://github.com/gmg300">Garrett-Gassensmith</a>
                 </p>
             </Col>    
         </Row>
         <Row>
             <Col s={12} m={6}>
-                <h1>Mohmed Vaid</h1>
-                <img src=''/>
+                <h2>Mohmed Vaid</h2>
+                <img src='https://avatars2.githubusercontent.com/u/59095556?s=400&u=9472624d2c71702c343c9fb415622e93addc64a5&v=4'/>
                 <p>
                     
                 </p>
+                <p>
+                LinkedIn: <a href="https://www.linkedin.com/in/mohmedvaid/">Mohmed Vaid</a>
+
+                </p>
+                <p>
+                    GitHub: <a href="https://github.com/Mohmedvaid">Mohmed-Vaid</a>
+                </p>
+
             </Col>
             <Col s={12} m={6}>
-                <h1>Rachel Levy</h1>
+                <h2>Rachel Levy</h2>
                 <img src=''/>
                 <p>
                         

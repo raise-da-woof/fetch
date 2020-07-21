@@ -19,6 +19,12 @@ function Home () {
     })
   }
   let history = useHistory()
+  useEffect( () => {
+    API.getUserMatches(currentUser._id)
+    .then(res => {
+      store.dispatch(addMatches(res.data))
+    })
+  }, []);
   // Check user Auth token, if its not vaild send user to home page
   API.verifyToken(Auth)
   .then( res => {

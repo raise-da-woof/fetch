@@ -121,7 +121,6 @@ function AllPetCard () {
                 style={{
                   marginRight: '5px'
                 }}
-                waves='light'
                 onClick = { dislikedSwipe }
               >
                 DisLike
@@ -135,7 +134,6 @@ function AllPetCard () {
                 style={{
                   marginRight: '5px'
                 }}
-                waves='light'
                 onClick= { likedSwipe }
               >
                 Like

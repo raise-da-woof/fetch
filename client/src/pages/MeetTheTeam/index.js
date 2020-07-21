@@ -9,7 +9,7 @@ function MeetTheTeam () {
         <Row>
             <Col s={12} m={6}>
                 <h2>Alex Bailon</h2>
-                <img src='https://avatars2.githubusercontent.com/u/59755671?s=460&u=283873d7bfe90d9df1d3dd5afd5ed79d23e9c73e&v=4'/>
+                <img src='https://avatars2.githubusercontent.com/u/59755671?s=300&u=283873d7bfe90d9df1d3dd5afd5ed79d23e9c73e&v=4'/>
                 <p>
                 Full-Stack Web Developer with a background in customer service ensuring 
                 that customers are always fully satisfied with the product and service 
@@ -28,7 +28,7 @@ function MeetTheTeam () {
             </Col>
             <Col s={12} m={6}>
                 <h2>Garrett Gassensmith</h2>
-                <img src='https://media-exp1.licdn.com/dms/image/C4E03AQGZQIHB0TAFXw/profile-displayphoto-shrink_400_400/0?e=1600905600&v=beta&t=APDwjH-ToW9oYXyam5SbCC4ni_l9vuALlSZlxyQlZPo'/>
+                <img src='https://avatars3.githubusercontent.com/u/25697564?s=300&u=c5041af11c759c761e91263609ae183b44611fdf&v=4'/>
                 <p>
                 Full-Stack Web Developer with a background in video production and digital media.
                  Interested in development challenges that require strategic problem-solving and 
@@ -45,7 +45,7 @@ function MeetTheTeam () {
         <Row>
             <Col s={12} m={6}>
                 <h2>Mohmed Vaid</h2>
-                <img src='https://avatars2.githubusercontent.com/u/59095556?s=400&u=9472624d2c71702c343c9fb415622e93addc64a5&v=4'/>
+                <img src='https://avatars2.githubusercontent.com/u/59095556?s=300&u=9472624d2c71702c343c9fb415622e93addc64a5&v=4'/>
                 <p>
                     
                 </p>
@@ -60,10 +60,17 @@ function MeetTheTeam () {
             </Col>
             <Col s={12} m={6}>
                 <h2>Rachel Levy</h2>
-                <img src=''/>
+                <img src='https://avatars1.githubusercontent.com/u/57646446?s=300&u=9e4b0f37e8ba3ebad64f87810ae0edebada358c8&v=4'/>
                 <p>
                         
                 </p>  
+                <p>
+                    LinkedIn: <a href="https://www.linkedin.com/in/rachel-levy-416427151/">Rachel Levy</a>
+
+                </p>
+                <p>
+                    GitHub: <a href="https://github.com/rwillowlevy">Rachel-Levy</a>
+                </p>
             </Col>    
         </Row>
 

@@ -4,8 +4,12 @@ import { Navbar, NavItem, Icon } from 'react-materialize'
 import './style.css'
 
 function Nav () {
+  
   const { pathname } = useLocation()
   const possiblePaths = [ '/match', '/profile', '/messages']
+  const logout = () => {
+    localStorage.setItem('oAuth', '')
+  }
   const renderNav = () => {
     if (pathname === '/') {
       return (
@@ -53,7 +57,7 @@ function Nav () {
           <Link to="/profile">
             Profile
           </Link>
-          <Link to="/">
+          <Link to='/' onClick= { logout }>
             Logout
           </Link>
         </Navbar>

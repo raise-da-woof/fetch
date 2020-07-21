@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import store from '../../utils/store'
-import { addPets, addRandomNum } from '../../utils/actions'
+import { addPets, addRandomNum, addMatches } from '../../utils/actions'
 import API from '../../utils/API'
 import { Card, CardTitle, Icon, Col, Row, Button } from 'react-materialize'
 import 'materialize-css'
@@ -12,6 +12,13 @@ function AllPetCard () {
   const [ cardAn, setCardAn ] = useState('animate__animated animate__fadeIn')
   const [ match, setMatch ] = useState('hideMatch')
   const [ btns, setBtns ] = useState('')
+
+  useEffect( () => {
+    API.getUserMatches(currentUser._id)
+    .then(res => {
+      store.dispatch(addMatches(res.data))
+    })
+  }, [match]);
   // Remove current users pet from all pets 
   const possiblePets = allPets.filter(
     pet => pet._id !== currentUser.pets[0]._id
@@ -29,7 +36,6 @@ function AllPetCard () {
   const newPetState = possiblePets.filter(pet => pet._id !== currentPet._id)
   // current user pet id
   const currentUserPetID = currentUser.pets[0]._id
-  console.log(possiblePets)
   // Function for when user swipes right
   const likedSwipe = async (e) => {
     e.preventDefault()
@@ -41,7 +47,6 @@ function AllPetCard () {
       liked: true
     }
     const res = await API.createSwipe(data)
-    console.log(res)
     if (res.data.msg === "It's a match!"){
       setMatch('showMatch')
       setBtns('disabled')
@@ -76,7 +81,6 @@ function AllPetCard () {
       liked: false
     }
     const res = await API.createSwipe(data)
-    console.log(res)
     setCardAn('animate__animated animate__fadeOutLeft')
     setTimeout(()=>{
       store.dispatch(addPets(newPetState))

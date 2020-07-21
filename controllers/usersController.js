@@ -11,7 +11,7 @@ module.exports = {
       return res.json(userData);
     } catch (err) {
       if (err.name == "CastError") {
-        return res.status(422).json({ msg: "Invalid user ID" });
+        return res.status(422).json("Invalid user ID");
       }
       return res.status(500).json(err);
     }
@@ -37,13 +37,13 @@ module.exports = {
         .populate("pets");
       // Check if user exists
       if (!user) {
-        return res.status(403).json({ msg: "Invalid email or password" });
+        return res.status(403).json("Invalid email or password");
       }
       // Check password
       bcrypt.compare(body.password, user.password).then((isMatch) => {
         if (isMatch) {
           // User exists - Create JWT Payload
-          const payload = { id: user._id, username: user.username };
+          const payload = { userData: user};
           // Sign token
           jwt.sign(payload, keys.secretOrKey,
             {
@@ -56,7 +56,7 @@ module.exports = {
             }
           );
         } else {
-          return res.status(403).json({ msg: "Invalid email or password" });
+          return res.status(403).json("Invalid email or password");
         }
       });
     } catch (err) {
@@ -67,7 +67,9 @@ module.exports = {
     try {
       const newUser = await db.User.create(body);
       // Create JWT Payload
-      const payload = { id: newUser._id, username: newUser.username };
+      const payload = { 
+        userData: newUser
+      };
       // Sign token
       jwt.sign(
         payload,
@@ -85,8 +87,10 @@ module.exports = {
         }
       );
     } catch (err) {
-      if (err.name == "ValidationError" || err.name == "MongoError") {
-        return res.status(400).json({ msg: err.message });
+      if (err.name == "ValidationError") {
+        return res.status(400).json(err.message);
+      } else if (err.name == "MongoError") {
+        return res.status(400).json("Username or email is unavailable")
       } else {
         return res.status(500).json(err);
       }
@@ -100,7 +104,7 @@ module.exports = {
         return res.json(updatedUser);
     } catch (err) {
       if (err.name == "ValidationError" || err.name == "MongoError") {
-        return res.status(400).json({ msg: err.message });
+        return res.status(400).json(err.message);
       } else {
         return res.status(500).json(err);
       }
@@ -121,7 +125,6 @@ module.exports = {
   remove: async function ({ params }, res) {
     try {
       const userData = await db.User.findByIdAndDelete(params.id);
-      console.log(userData.pets[0]);
       if (userData.pets.length > 0) {
         const removedPet = await db.Pet.findByIdAndDelete(userData.pets[0]);
         if (userData.matches.length > 0) {
@@ -151,7 +154,7 @@ module.exports = {
         return res.json(authData);
       });
     } else {
-      return res.status(403).json({ msg: "No token found" });
+      return res.status(403).json("No token found");
     }
   },
 };

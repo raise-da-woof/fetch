@@ -14,12 +14,15 @@ function Modals () {
   const [email, setEmail] = useState()
   const [password, setPassword] = useState()
   const [confirmPassword, setConfirmPassword] = useState()
-  const [type, setType] = useState('none')
+  const [error, setError] = useState({
+    type: 'none',
+    msg: ''
+  })
 
   let history = useHistory()
   const matchPassword = () => {
     if (password != confirmPassword) {
-      return <p> password do not match </p>
+      return <p className="alert alert-danger animate__animated animate__fadeIn">Passwords do not match</p>
     }
   }
   // Function for user login
@@ -33,16 +36,15 @@ function Modals () {
       const res = await API.loginUser(user)
       store.dispatch(addCurrentUser(res.data.user))
       store.dispatch(addAuth(res.data.token))
+      localStorage.setItem('oAuth', res.data.token)
       const petsRes = await API.getAllPets()
       store.dispatch(addPets(petsRes.data))
-      console.log(store.getState())
       return history.push('/match')
     } catch (err) {
-      setType('danger')
+      setError({ ...error, type: 'custom', msg: err.response.data })
       setTimeout(() => {
-        setType('none')
-      }, 2000)
-      console.log(err)
+        setError({ ...error, type: 'none', msg: '' })
+      }, 3000)
     }
   }
   // Function to create new user
@@ -54,30 +56,25 @@ function Modals () {
         email,
         password
       }
-      console.log(user)
       const userRes = await API.createUser(user)
-      console.log('done')
-      console.log(userRes)
       if (userRes.status === 200) {
-        console.log(userRes.data)
-        console.log(store.getState())
         store.dispatch(addCurrentUser(userRes.data))
         const authRes = await API.loginUser({
           email: user.email,
           password: user.password
         })
         store.dispatch(addAuth(authRes.data.token))
+        localStorage.setItem('oAuth', authRes.data.token)
         const petsRes = await API.getAllPets()
         store.dispatch(addPets(petsRes.data))
-        console.log(store.getState())
         return history.push('/profile')
       }
     } catch (err) {
-      setType('danger')
+      console.log(err.response)
+      setError({ ...error, type: 'custom', msg: err.response.data })
       setTimeout(() => {
-        setType('none')
-      }, 2000);
-      console.log(err)
+        setError({ ...error, type: 'none', msg: '' })
+      }, 5000);
     }
   }
   return (
@@ -99,7 +96,7 @@ function Modals () {
         id='modal1'
         className='modal'
         actions={[
-          <Button className='modal-close-btn' flat modal='close' node='butoon'>
+          <Button className='modal-close-btn' flat modal='close' node='button'>
             Close
           </Button>
         ]}
@@ -110,7 +107,6 @@ function Modals () {
       >
         <div className='row'>
           <form className='col s12'>
-            <Alerts type={type} />
             <div className='row'>
               <div className='input-field col s12'>
                 <input
@@ -132,9 +128,10 @@ function Modals () {
                 />
                 <label for='password'>Password</label>
               </div>
-              <button className='login-btn-modal btn' onClick={login}>
+              <Alerts error={error} />
+              <Button className='login-btn-modal btn' disabled={!email || !password} onClick={login}>
                 Login
-              </button>
+              </Button>
             </div>
           </form>
         </div>
@@ -146,13 +143,6 @@ function Modals () {
         actions={[
           <Button className='modal-close-btn' flat modal='close' node='butoon'>
             Close
-          </Button>,
-          <Button
-            className='modal-signup-btn'
-            node='button'
-            onClick={createUser}
-          >
-            Signup
           </Button>
         ]}
         options={{
@@ -161,8 +151,6 @@ function Modals () {
       >
         <div className='row'>
           <form className='col s12'>
-            <Alerts type={type} />
-
             <div className='row'>
               <div className='input-field col s12'>
                 <input
@@ -205,8 +193,12 @@ function Modals () {
                   onChange={e => setConfirmPassword(e.target.value)}
                 />
                 <label for='confirmPassword'>Confirm Password</label>
-                {matchPassword()}
               </div>
+              {matchPassword()}
+              <Alerts error={error} />
+              <Button className='modal-signup-btn' node='button' disabled={!username || !email || !password || !confirmPassword} onClick={createUser}>
+                Signup
+              </Button>
             </div>
           </form>
         </div>

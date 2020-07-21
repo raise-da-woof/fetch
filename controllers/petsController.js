@@ -8,7 +8,7 @@ module.exports = {
     try {
       const petsData = await db.Pet.find().limit(FIND_PETS_LIMIT);
       if (!petsData) {
-        return res.status(400).json({ msg: "No pets found :(" });
+        return res.status(400).json("No pets found :(");
       }
       return res.json(petsData);
     } catch (err) {
@@ -19,7 +19,7 @@ module.exports = {
     try {
       const petData = await db.Pet.findById(params.id);
       if (!petData) {
-        return res.status(400).json({ msg: "No pet found :(" });
+        return res.status(400).json("No pet found :(");
       }
       return res.json(petData);
     } catch (err) {
@@ -36,7 +36,6 @@ module.exports = {
       const encoded = data.toString("base64");
       const imgurRes = await imgur.uploadBase64(encoded);
       const uploadRes = imgurRes.data;
-      console.log("Upload Response:", uploadRes);
       return res.json(uploadRes);
     } catch (err) {
       return res.status(500).json(err);
@@ -47,7 +46,7 @@ module.exports = {
       const userExists = await db.User.findById(params.id);
       // Check for user
       if (!userExists) {
-        return res.status(400).json({ msg: "Invalid user ID" });
+        return res.status(400).json("Invalid user ID");
       }
       // Create pet
       const newPet = await db.Pet.create(body);
@@ -61,7 +60,7 @@ module.exports = {
       return res.json(updatedUser);
     } catch (err) {
       if (err.name == "ValidationError" || err.name == "MongoError") {
-        return res.status(400).json({ msg: err.message });
+        return res.status(400).json(err.message);
       } else {
         return res.status(500).json(err);
       }
@@ -76,7 +75,7 @@ module.exports = {
       return res.json(updatedPet);
     } catch (err) {
       if (err.name == "ValidationError" || err.name == "MongoError") {
-        return res.status(400).json({ msg: err.message });
+        return res.status(400).json(err.message);
       } else {
         return res.status(500).json(err);
       }

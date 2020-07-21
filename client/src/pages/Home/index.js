@@ -11,15 +11,7 @@ function Home () {
   // All State Management
   const { checkAuth, setCheckAuth } = store.getState(false) 
   const { currentUser, Auth, matches, allPets } = store.getState()
-  console.log(matches)
   // UseEffect hook to get matches
-  useEffect( () => {
-    API.getUserMatches(currentUser._id)
-    .then(res => {
-      console.log('Match API:', res)
-      store.dispatch(addMatches(res.data))
-    })
-  }, []);
   if ( allPets.length === 0 ){
     API.getAllPets()
     .then( petsRes => {
@@ -30,9 +22,7 @@ function Home () {
   // Check user Auth token, if its not vaild send user to home page
   API.verifyToken(Auth)
   .then( res => {
-    console.log(res)
   }).catch( err => {
-    console.log(err)
     store.dispatch(addAuth(undefined))
     history.push('/')
   })

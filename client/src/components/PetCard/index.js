@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { Redirect, useHistory } from 'react-router-dom'
 import { TextInput, Select, Checkbox, Textarea, Button, Modal } from 'react-materialize'
 import API from '../../utils/API'
@@ -10,6 +10,8 @@ import './style.css'
 
 function PetCard () {
   const { currentUser, Auth } = store.getState()
+  const pageLoaded = useRef(false)
+  const [disableUpdate, setDisableUpdate] = useState(true)
   const [pet, setPet] = useState({
     name: currentUser.pets[0].name,
     image: currentUser.pets[0].image,
@@ -25,9 +27,19 @@ function PetCard () {
     type: 'none',
     msg: ''
   })
+
+  useEffect(() => {
+    if(pageLoaded.current) {
+      setDisableUpdate(false);
+    } else {
+      pageLoaded.current = true;
+    }
+  }, [pet]);
+
   const history = useHistory()
   const updatePet = async e => {
     e.preventDefault()
+    setDisableUpdate(true);
     try {
       const updatePetRes = await API.updatePet(currentUser.pets[0]._id, pet)
       store.dispatch(updateCurrentUserPet(updatePetRes.data))
@@ -40,6 +52,7 @@ function PetCard () {
       setTimeout(() => {
         setError({ ...error, type: 'none' })
       }, 2000)
+      
     }
   }
   const deletePet = async e => {
@@ -60,7 +73,6 @@ function PetCard () {
       return (
         <>
           <img src={pet.image} />
-          <Alerts error={error} />
           <TextInput
             className='upload-btn'
             id='TextInput-4'
@@ -169,6 +181,7 @@ function PetCard () {
             onChange={e => setPet({ ...pet, bio: e.target.value })}
             value={pet.bio}
           />
+          <Alerts error={error} />
           <Button
             className="update-btn"
             node='button'
@@ -176,6 +189,7 @@ function PetCard () {
               marginRight: '5px'
             }}
             waves='light'
+            disabled={disableUpdate}
             onClick={updatePet}
           >
             Update Pet

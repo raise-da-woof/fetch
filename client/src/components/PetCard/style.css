@@ -1,9 +1,14 @@
+.update-btn:disabled,
+.delete-btn:disabled {
+  background: #dfdfdf !important;
+}
+
 .update-btn {
   background: linear-gradient(262deg, #71e4d3, #1bd48b);
 }
 
 .update-btn:hover {
-    background: linear-gradient(262deg, #1bd48b, #71e4d3);
+  background: linear-gradient(262deg, #1bd48b, #71e4d3);
   border-radius: 3px;
 }
 

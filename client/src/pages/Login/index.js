@@ -11,7 +11,7 @@ function Login () {
   const histoy = useHistory()
   const authCheck = localStorage.getItem('oAuth')
   useEffect( () => {
-    if (authCheck != null){
+    if (authCheck != '' && authCheck != null ){
       API.verifyToken(authCheck)
       .then ( res => {
         store.dispatch(addAuth(authCheck))

@@ -11,7 +11,7 @@ module.exports = {
       return res.json(userData);
     } catch (err) {
       if (err.name == "CastError") {
-        return res.status(422).json({ msg: "Invalid user ID" });
+        return res.status(422).json("Invalid user ID");
       }
       return res.status(500).json(err);
     }
@@ -37,7 +37,7 @@ module.exports = {
         .populate("pets");
       // Check if user exists
       if (!user) {
-        return res.status(403).json({ msg: "Invalid email or password" });
+        return res.status(403).json("Invalid email or password");
       }
       // Check password
       bcrypt.compare(body.password, user.password).then((isMatch) => {
@@ -56,7 +56,7 @@ module.exports = {
             }
           );
         } else {
-          return res.status(403).json({ msg: "Invalid email or password" });
+          return res.status(403).json("Invalid email or password");
         }
       });
     } catch (err) {
@@ -86,7 +86,7 @@ module.exports = {
       );
     } catch (err) {
       if (err.name == "ValidationError" || err.name == "MongoError") {
-        return res.status(400).json({ msg: err.message });
+        return res.status(400).json(err.message);
       } else {
         return res.status(500).json(err);
       }
@@ -100,7 +100,7 @@ module.exports = {
         return res.json(updatedUser);
     } catch (err) {
       if (err.name == "ValidationError" || err.name == "MongoError") {
-        return res.status(400).json({ msg: err.message });
+        return res.status(400).json(err.message);
       } else {
         return res.status(500).json(err);
       }
@@ -151,7 +151,7 @@ module.exports = {
         return res.json(authData);
       });
     } else {
-      return res.status(403).json({ msg: "No token found" });
+      return res.status(403).json("No token found");
     }
   },
 };

@@ -49,12 +49,21 @@
     height: 75%;
 } */
 
+.modal .modal-content {
+    padding: 24px 24px 0px 24px;
+}
+
+#modal2 .modal-footer {
+    margin-top: -50px;
+}
+
 /* Signup btn */
 .modal-signup-btn{
     width: 100%;
     height: 50px;
     background: linear-gradient(86deg, #ff7854, #fd267d);
     font-family: 'Baloo Da 2', cursive;
+    font-size: 22px;
 }
 
 /* signup footer btn */

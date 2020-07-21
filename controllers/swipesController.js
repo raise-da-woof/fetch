@@ -6,7 +6,7 @@ module.exports = {
     try {
       const swipeData = await db.Swipe.findById(params.id);
       if (!swipeData) {
-        return res.status(400).json({ msg: "Data could not be found" });
+        return res.status(400).json("Data could not be found");
       }
       return res.json(swipeData);
     } catch (err) {

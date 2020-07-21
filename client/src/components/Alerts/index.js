@@ -1,29 +1,31 @@
-import React from 'react'
-import './style.css'
+import React from "react";
+import "./style.css";
 
-function Alerts ({ type }) {
-  const showAtler = () => {
-    if (type === 'danger') {
+function Alerts({ error }) {
+  const showAlert = () => {
+    if (error.type === "danger") {
       return (
-        <div class='alert alert-danger animate__animated animate__fadeIn' role='alert'>
-          Something went wrong! <br/> Please try again.
+        <div class="alert alert-danger animate__animated animate__fadeIn" role="alert">
+          Something went wrong! <br /> Please try again.
         </div>
-      )
-    } else if (type === 'success') {
-      return(
-        <div class='alert alert-success animate__animated animate__fadeIn' role='alert'>
+      );
+    } else if (error.type === "success") {
+      return (
+        <div class="alert alert-success animate__animated animate__fadeIn" role="alert">
           Everythings looking good! Woof!!
         </div>
-      )
-    }
-    else {
+      );
+    } else if (error.type === "custom") {
       return (
-        <>
-        </>
-      )
+        <div class="alert alert-danger animate__animated animate__fadeIn" role="alert">
+          {error.msg}
+        </div>
+      );
+    } else {
+      return <> </>;
     }
-  }
-  return <>{showAtler()}</>
+  };
+  return <>{showAlert()}</>;
 }
 
-export default Alerts
+export default Alerts;

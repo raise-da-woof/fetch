@@ -14,7 +14,11 @@ function Modals () {
   const [email, setEmail] = useState()
   const [password, setPassword] = useState()
   const [confirmPassword, setConfirmPassword] = useState()
-  const [type, setType] = useState('none')
+  // const [type, setType] = useState('none')
+  const [error, setError] = useState({
+    type: 'none',
+    msg: ''
+  })
 
   let history = useHistory()
   const matchPassword = () => {
@@ -37,10 +41,10 @@ function Modals () {
       store.dispatch(addPets(petsRes.data))
       return history.push('/match')
     } catch (err) {
-      setType('danger')
+      setError({ ...error, type: 'custom', msg: err.response.data })
       setTimeout(() => {
-        setType('none')
-      }, 2000)
+        setError({ ...error, type: 'none', msg: '' })
+      }, 3000)
     }
   }
   // Function to create new user
@@ -65,10 +69,11 @@ function Modals () {
         return history.push('/profile')
       }
     } catch (err) {
-      setType('danger')
+      console.log(err.response)
+      setError({ ...error, type: 'custom', msg: err.response.data })
       setTimeout(() => {
-        setType('none')
-      }, 2000);
+        setError({ ...error, type: 'none', msg: '' })
+      }, 5000);
     }
   }
   return (
@@ -90,7 +95,7 @@ function Modals () {
         id='modal1'
         className='modal'
         actions={[
-          <Button className='modal-close-btn' flat modal='close' node='butoon'>
+          <Button className='modal-close-btn' flat modal='close' node='button'>
             Close
           </Button>
         ]}
@@ -101,7 +106,7 @@ function Modals () {
       >
         <div className='row'>
           <form className='col s12'>
-            <Alerts type={type} />
+            <Alerts error={error} />
             <div className='row'>
               <div className='input-field col s12'>
                 <input
@@ -152,7 +157,7 @@ function Modals () {
       >
         <div className='row'>
           <form className='col s12'>
-            <Alerts type={type} />
+            <Alerts error={error} />
 
             <div className='row'>
               <div className='input-field col s12'>

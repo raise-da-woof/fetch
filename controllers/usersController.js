@@ -92,8 +92,10 @@ module.exports = {
         }
       );
     } catch (err) {
-      if (err.name == "ValidationError" || err.name == "MongoError") {
+      if (err.name == "ValidationError") {
         return res.status(400).json(err.message);
+      } else if (err.name == "MongoError") {
+        return res.status(400).json("Username or email is unavailable")
       } else {
         return res.status(500).json(err);
       }

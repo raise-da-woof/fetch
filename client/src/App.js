@@ -7,24 +7,27 @@ import NoMatch from "./pages/NoMatch";
 import Nav from "./components/Nav";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import PrivateRoute from './components/PrivateRoute'
+import FetchFooter from './components/Footer'
 import './style.css'
+
 
 function App() {
   return (
     <Router>
     <div>
+      <div className="flex-wrapper">
       <Nav />
       <Switch>
         <Route exact path="/" component={Login} />
-        <PrivateRoute path="/match">
-          <Route exact path="/match" component={Home} /> 
-        </PrivateRoute >
+        <PrivateRoute exact path='/match' component={Home}/>
         <PrivateRoute exact path='/profile' component={Profile} />
         <PrivateRoute exact path='/messages' component={Messages} />
         <Route>
           <NoMatch />
         </Route>
       </Switch>
+      </div>
+      <FetchFooter className="footer" />
     </div>
     </Router>
   );

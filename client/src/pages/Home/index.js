@@ -6,6 +6,7 @@ import CheckPet from '../../components/CheckPet'
 import store from '../../utils/store'
 import { addAuth, addMatches, addPets } from '../../utils/actions'
 import 'materialize-css'
+import FetchFooter from '../../components/Footer'
 
 function Home () {
   // All State Management
@@ -31,6 +32,7 @@ function Home () {
     <Container>
       <CheckPet />
     </Container>
+
   )
 }
 

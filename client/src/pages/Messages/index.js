@@ -5,6 +5,7 @@ import store from '../../utils/store'
 import { addMatches, addAuth } from '../../utils/actions'
 import { Row, Col, Card, Icon, CardTitle, Container } from 'react-materialize'
 import 'materialize-css'
+import FetchFooter from '../../components/Footer'
 
 function Messages () {
   let history = useHistory()
@@ -75,6 +76,7 @@ function Messages () {
   }
   return (
     <>
+
       {renderMatches()}
     </>
   )

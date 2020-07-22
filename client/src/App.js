@@ -11,16 +11,18 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import PrivateRoute from './components/PrivateRoute'
 import './style.css'
 import MeetTheTeam from "./pages/MeetTheTeam";
+import FetchFooter  from "./components/Footer/"
 
 function App() {
   return (
     <Router>
     <div>
+    <div className="flex-wrapper">
       <Nav />
       <Switch>
         <Route exact path="/" component={Login} />
-        <Route exact path="/ourmission" component={OurMission} />
-        <Route exact path="/meettheteam" component={MeetTheTeam} />
+        <PrivateRoute exact path="/ourmission" component={OurMission} />
+        <PrivateRoute exact path="/meettheteam" component={MeetTheTeam} />
         <PrivateRoute path="/match">
           <Route exact path="/match" component={Home} /> 
         </PrivateRoute >
@@ -30,6 +32,8 @@ function App() {
           <NoMatch />
         </Route>
       </Switch>
+      </div>
+      <FetchFooter className="footer" />
     </div>
     </Router>
   );

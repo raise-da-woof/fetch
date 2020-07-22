@@ -13,3 +13,9 @@ h1, h2, h4 {
     display: block;
     margin: 0 auto;
 }
+.flex-wrapper {
+    /* display: flex; */
+    min-height: 80vh;
+    flex-direction: column;
+    justify-content: space-between
+  }

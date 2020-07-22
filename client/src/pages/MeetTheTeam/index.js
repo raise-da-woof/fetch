@@ -1,20 +1,29 @@
-import React from 'react'
-import { useHistory } from 'react-router-dom'
-import { Container, Row, Col, Card, Icon, CardTitle } from 'react-materialize'
-import API from '../../utils/API'
-import store from '../../utils/store'
-import { addAuth } from '../../utils/actions'
-import 'materialize-css'
+import React from "react";
+import { useHistory } from "react-router-dom";
+import {
+  Container,
+  Row,
+  Col,
+  Card,
+  Icon,
+  CardTitle,
+  Button,
+} from "react-materialize";
+import API from "../../utils/API";
+import store from "../../utils/store";
+import { addAuth } from "../../utils/actions";
+import "materialize-css";
+import "./style.css";
 
-function MeetTheTeam () {
-  const { Auth } = store.getState()
-  let history = useHistory()
+function MeetTheTeam() {
+  const { Auth } = store.getState();
+  let history = useHistory();
   API.verifyToken(Auth)
-    .then(res => {})
-    .catch(err => {
-      store.dispatch(addAuth(undefined))
-      history.push('/')
-    })
+    .then((res) => {})
+    .catch((err) => {
+      store.dispatch(addAuth(undefined));
+      history.push("/");
+    });
   return (
     <Container>
       <h1>Meet the Team</h1>
@@ -24,7 +33,7 @@ function MeetTheTeam () {
             closeIcon={<Icon>close</Icon>}
             header={
               <CardTitle
-                image='https://avatars2.githubusercontent.com/u/59755671?s=250&u=283873d7bfe90d9df1d3dd5afd5ed79d23e9c73e&v=4'
+                image="https://avatars2.githubusercontent.com/u/59755671?s=250&u=283873d7bfe90d9df1d3dd5afd5ed79d23e9c73e&v=4"
                 reveal
               />
             }
@@ -41,12 +50,13 @@ function MeetTheTeam () {
               </p>
             }
             revealIcon={<Icon>more_vert</Icon>}
-            title='Alex Bailon'
+            title="Alex Bailon"
           >
-            <p>
-              LinkedIn:{' '}
-              <a href='https://www.linkedin.com/in/alex-bailon/'>Alex Bailon</a>{' '}
-              GitHub: <a href='https://github.com/Alex-Bailon'>Alex-Bailon</a>
+            <p className="personal-links">
+              <a className="btn" target="_blank" href="https://www.linkedin.com/in/alex-bailon/">
+                LinkedIn
+              </a>
+              <a className="btn" target="_blank" href="https://github.com/Alex-Bailon">GitHub</a>
             </p>
           </Card>
         </Col>
@@ -55,7 +65,7 @@ function MeetTheTeam () {
             closeIcon={<Icon>close</Icon>}
             header={
               <CardTitle
-                image='https://avatars3.githubusercontent.com/u/25697564?s=250&u=c5041af11c759c761e91263609ae183b44611fdf&v=4'
+                image="https://avatars3.githubusercontent.com/u/25697564?s=250&u=c5041af11c759c761e91263609ae183b44611fdf&v=4"
                 reveal
               />
             }
@@ -64,19 +74,17 @@ function MeetTheTeam () {
                 Full-Stack Web Developer with a background in video production
                 and digital media. Interested in development challenges that
                 require strategic problem-solving and foster new learning
-                experiences.{' '}
+                experiences.{" "}
               </p>
             }
             revealIcon={<Icon>more_vert</Icon>}
-            title='Garrett Gassensmith'
+            title="Garrett Gassensmith"
           >
-            <p>
-              LinkedIn:{' '}
-              <a href='https://www.linkedin.com/in/garrett-gassensmith-5ab01880/'>
-                Garrett Gassensmith
-              </a>{' '}
-              GitHub:{' '}
-              <a href='https://github.com/gmg300'>gmg300</a>
+            <p className="personal-links">
+              <a className="btn" target="_blank" href="https://www.linkedin.com/in/garrett-gassensmith-5ab01880/">
+                LinkedIn
+              </a>
+              <a className="btn" target="_blank" href="https://github.com/gmg300">GitHub</a>
             </p>
           </Card>
         </Col>
@@ -87,7 +95,7 @@ function MeetTheTeam () {
             closeIcon={<Icon>close</Icon>}
             header={
               <CardTitle
-                image='https://avatars2.githubusercontent.com/u/59095556?s=250&u=9472624d2c71702c343c9fb415622e93addc64a5&v=4'
+                image="https://avatars2.githubusercontent.com/u/59095556?s=250&u=9472624d2c71702c343c9fb415622e93addc64a5&v=4"
                 reveal
               />
             }
@@ -100,12 +108,13 @@ function MeetTheTeam () {
               </p>
             }
             revealIcon={<Icon>more_vert</Icon>}
-            title='Mohmed Vaid'
+            title="Mohmed Vaid"
           >
-            <p>
-              LinkedIn:{' '}
-              <a href='https://www.linkedin.com/in/mohmedvaid/'>Mohmed Vaid</a>{' '}
-              GitHub: <a href='https://github.com/Mohmedvaid'>Mohmed-Vaid</a>
+            <p className="personal-links">
+              <a className="btn" target="_blank" href="https://www.linkedin.com/in/mohmedvaid/">
+                LinkedIn
+              </a>
+              <a className="btn" target="_blank" href="https://github.com/Mohmedvaid">GitHub</a>
             </p>
           </Card>
         </Col>
@@ -114,7 +123,7 @@ function MeetTheTeam () {
             closeIcon={<Icon>close</Icon>}
             header={
               <CardTitle
-                image='https://avatars1.githubusercontent.com/u/57646446?s=250&u=9e4b0f37e8ba3ebad64f87810ae0edebada358c8&v=4'
+                image="https://avatars1.githubusercontent.com/u/57646446?s=250&u=9e4b0f37e8ba3ebad64f87810ae0edebada358c8&v=4"
                 reveal
               />
             }
@@ -133,20 +142,19 @@ function MeetTheTeam () {
               </p>
             }
             revealIcon={<Icon>more_vert</Icon>}
-            title='Rachel Levy'
+            title="Rachel Levy"
           >
-            <p>
-              LinkedIn:{' '}
-              <a href='https://www.linkedin.com/in/rachel-levy-416427151/'>
-                Rachel Levy
+            <p className="personal-links">
+              <a className="btn" target="_blank" href="https://www.linkedin.com/in/rachel-levy-416427151/">
+                LinkedIn
               </a>
-              GitHub: <a href='https://github.com/rwillowlevy'>Rachel-Levy</a>
+              <a className="btn" target="_blank" href="https://github.com/rwillowlevy">GitHub</a>
             </p>
           </Card>
         </Col>
       </Row>
     </Container>
-  )
+  );
 }
 
-export default MeetTheTeam
+export default MeetTheTeam;

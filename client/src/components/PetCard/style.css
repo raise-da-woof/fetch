@@ -1,3 +1,7 @@
+.profile-img {
+  max-width: 325px;
+}
+
 .update-btn:disabled,
 .delete-btn:disabled {
   background: #dfdfdf !important;

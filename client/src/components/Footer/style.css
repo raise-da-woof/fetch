@@ -1,4 +1,8 @@
-footer{
+footer {
     background: linear-gradient(262deg, #fd267d, #ff7854);
     margin-top: 45px;
+}
+
+.footer-tag {
+    font-family: 'Pacifico', cursive;
 }

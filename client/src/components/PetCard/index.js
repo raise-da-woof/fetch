@@ -72,7 +72,10 @@ function PetCard () {
     if (currentUser.pets.length > 0) {
       return (
         <>
-          <img src={pet.image} />
+        <div className="row">
+          <img className="profile-img" src={pet.image} />
+        </div>
+        <div>
           <TextInput
             className='upload-btn'
             id='TextInput-4'
@@ -228,6 +231,7 @@ function PetCard () {
               information and no longer have access to your pet and this pets matches.
             </p>
           </Modal>
+        </div>
         </>
       )
     } else {

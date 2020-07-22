@@ -1,8 +1,20 @@
 import React from 'react'
+import { useHistory } from 'react-router-dom'
 import { Container, Row, Col } from 'react-materialize'
+import API from '../../utils/API'
+import store from '../../utils/store'
+import { addAuth } from '../../utils/actions'
 import 'materialize-css'
 
 function MeetTheTeam () {
+    const { Auth } = store.getState()
+    let history = useHistory()
+    API.verifyToken(Auth)
+    .then( res => {
+    }).catch( err => {
+      store.dispatch(addAuth(undefined))
+      history.push('/')
+    })
   return (
     <Container>
         <h1>Meet the Team</h1>

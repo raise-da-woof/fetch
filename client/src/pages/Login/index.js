@@ -11,17 +11,18 @@ function Login () {
   const histoy = useHistory()
   const authCheck = localStorage.getItem('oAuth')
   useEffect( () => {
-    if (authCheck != null){
-      console.log(authCheck)
+    if (authCheck != '' && authCheck != null ){
       API.verifyToken(authCheck)
       .then ( res => {
         store.dispatch(addAuth(authCheck))
-        store.dispatch(addCurrentUser(res.data.userData))
-        API.getAllPets()
-        .then ( petRes => {
-          store.dispatch(addPets(petRes.data))
-          console.log(res)
-          histoy.push('/match')
+        API.getUserById(res.data.userData._id)
+        .then (user => {
+          store.dispatch(addCurrentUser(user.data))
+          API.getAllPets()
+          .then ( petRes => {
+            store.dispatch(addPets(petRes.data))
+            histoy.push('/match')
+          })
         })
       })
     }

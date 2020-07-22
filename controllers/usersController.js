@@ -70,11 +70,6 @@ module.exports = {
       const payload = { 
         userData: newUser
       };
-
-      console.log('this is new user')
-      console.log(payload)
-
-
       // Sign token
       jwt.sign(
         payload,
@@ -92,8 +87,10 @@ module.exports = {
         }
       );
     } catch (err) {
-      if (err.name == "ValidationError" || err.name == "MongoError") {
+      if (err.name == "ValidationError") {
         return res.status(400).json(err.message);
+      } else if (err.name == "MongoError") {
+        return res.status(400).json("Username or email is unavailable")
       } else {
         return res.status(500).json(err);
       }
@@ -128,7 +125,6 @@ module.exports = {
   remove: async function ({ params }, res) {
     try {
       const userData = await db.User.findByIdAndDelete(params.id);
-      console.log(userData.pets[0]);
       if (userData.pets.length > 0) {
         const removedPet = await db.Pet.findByIdAndDelete(userData.pets[0]);
         if (userData.matches.length > 0) {

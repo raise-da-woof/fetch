@@ -22,7 +22,7 @@ function Modals () {
   let history = useHistory()
   const matchPassword = () => {
     if (password != confirmPassword) {
-      return <p> password do not match </p>
+      return <p className="alert alert-danger animate__animated animate__fadeIn">Passwords do not match</p>
     }
   }
   // Function for user login
@@ -107,7 +107,6 @@ function Modals () {
       >
         <div className='row'>
           <form className='col s12'>
-            <Alerts error={error} />
             <div className='row'>
               <div className='input-field col s12'>
                 <input
@@ -129,9 +128,10 @@ function Modals () {
                 />
                 <label for='password'>Password</label>
               </div>
-              <button className='login-btn-modal btn' onClick={login}>
+              <Alerts error={error} />
+              <Button className='login-btn-modal btn' disabled={!email || !password} onClick={login}>
                 Login
-              </button>
+              </Button>
             </div>
           </form>
         </div>
@@ -143,13 +143,6 @@ function Modals () {
         actions={[
           <Button className='modal-close-btn' flat modal='close' node='butoon'>
             Close
-          </Button>,
-          <Button
-            className='modal-signup-btn'
-            node='button'
-            onClick={createUser}
-          >
-            Signup
           </Button>
         ]}
         options={{
@@ -158,8 +151,6 @@ function Modals () {
       >
         <div className='row'>
           <form className='col s12'>
-            <Alerts error={error} />
-
             <div className='row'>
               <div className='input-field col s12'>
                 <input
@@ -202,8 +193,12 @@ function Modals () {
                   onChange={e => setConfirmPassword(e.target.value)}
                 />
                 <label for='confirmPassword'>Confirm Password</label>
-                {matchPassword()}
               </div>
+              {matchPassword()}
+              <Alerts error={error} />
+              <Button className='modal-signup-btn' node='button' disabled={!username || !email || !password || !confirmPassword} onClick={createUser}>
+                Signup
+              </Button>
             </div>
           </form>
         </div>

@@ -3,12 +3,15 @@ import Login from "./pages/Login/index"
 import Home from './pages/Home/index'
 import Profile from './pages/Profile'
 import Messages from './pages/Messages'
+import OurMission from './pages/OurMission'
+import MettTheTeam from './pages/MeetTheTeam'
 import NoMatch from "./pages/NoMatch";
 import Nav from "./components/Nav";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import PrivateRoute from './components/PrivateRoute'
 import FetchFooter from './components/Footer'
 import './style.css'
+import MeetTheTeam from "./pages/MeetTheTeam";
 
 
 function App() {

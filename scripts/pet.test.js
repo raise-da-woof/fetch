@@ -43,15 +43,15 @@ let ObjectId = "5f1333053e6ba0171d2e8d76"; // <===== Add a userId from your data
 //   .catch((err) => console.log("Error creating pet"));
 
 // ==== REMOVE PET ====
-db.Pet.findByIdAndDelete(ObjectId)
-  .then((petData) => {
-    db.User.findByIdAndUpdate(
-      petData.userId,
-      { $pull: { pets: petData._id } },
-      { new: true })
-      .then((removedPet) => {
-        console.log(petData.name + " was removed");
-      })
-      .catch((err) => console.log(err));
-  })
-  .catch((err) => console.log(err));
+// db.Pet.findByIdAndDelete(ObjectId)
+//   .then((petData) => {
+//     db.User.findByIdAndUpdate(
+//       petData.userId,
+//       { $pull: { pets: petData._id } },
+//       { new: true })
+//       .then((removedPet) => {
+//         console.log(petData.name + " was removed");
+//       })
+//       .catch((err) => console.log(err));
+//   })
+//   .catch((err) => console.log(err));

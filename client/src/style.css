@@ -5,7 +5,17 @@
     margin: 0 auto;
     max-width: 500px;
 }
-h1, h4 {
+h1, h2, h4 {
     text-align: center;
     font-family: 'Pacifico', cursive;
 }
+.imgCenter {
+    display: block;
+    margin: 0 auto;
+}
+.flex-wrapper {
+    /* display: flex; */
+    min-height: 80vh;
+    flex-direction: column;
+    justify-content: space-between
+  }

@@ -1,0 +1,9 @@
+.personal-links {
+    display: flex;
+    justify-content: space-between;
+}
+.personal-links .btn {
+    width: 150px;
+    margin: .5rem;
+    background: linear-gradient(86deg, #fd267d, #ff7854); 
+}

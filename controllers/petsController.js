@@ -68,7 +68,7 @@ module.exports = {
   },
   update: async function ({ params, body }, res) {
     try {
-      const updatedPet = await db.Pet.findByOneAndUpdate({ _id: params.id }, body, {
+      const updatedPet = await db.Pet.findOneAndUpdate({ _id: params.id }, body, {
         new: true,
         runValidators: true,
       })

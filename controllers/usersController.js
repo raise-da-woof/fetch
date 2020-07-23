@@ -98,7 +98,7 @@ module.exports = {
   },
   update: async function ({ params, body }, res) {
     try {
-      const updatedUser = await db.User.findByOneAndUpdate({ _id: params.id }, body, {
+      const updatedUser = await db.User.findOneAndUpdate({ _id: params.id }, body, {
         new: true, runValidators: true })
         .populate("pets")
         return res.json(updatedUser);

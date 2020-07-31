@@ -9,26 +9,25 @@ import './style.css'
 function AllPetCard () {
   // State Management
   const { currentUser, allPets, randomNumber } = store.getState()
-  const [ cardAn, setCardAn ] = useState('animate__animated animate__fadeIn')
-  const [ match, setMatch ] = useState('hideMatch')
-  const [ btns, setBtns ] = useState('')
+  const [cardAn, setCardAn] = useState('animate__animated animate__fadeIn')
+  const [match, setMatch] = useState('hideMatch')
+  const [btns, setBtns] = useState('')
 
-  useEffect( () => {
-    API.getUserMatches(currentUser._id)
-    .then(res => {
+  useEffect(() => {
+    API.getUserMatches(currentUser._id).then(res => {
       store.dispatch(addMatches(res.data))
     })
-  }, [match]);
-  // Remove current users pet from all pets 
+  }, [match])
+
+  // Remove current users pet from all pets
   const possiblePets = allPets.filter(
     pet => pet._id !== currentUser.pets[0]._id
   )
   // Generate random number for select random pet
   let randomNum = Math.floor(Math.random() * possiblePets.length)
-  if ( randomNumber === undefined ){
+  if (randomNumber === undefined) {
     store.dispatch(addRandomNum(randomNum))
-  }
-  else {
+  } else {
     randomNum = randomNumber
   }
   const currentPet = possiblePets[randomNum]
@@ -37,7 +36,7 @@ function AllPetCard () {
   // current user pet id
   const currentUserPetID = currentUser.pets[0]._id
   // Function for when user swipes right
-  const likedSwipe = async (e) => {
+  const likedSwipe = async e => {
     e.preventDefault()
     const data = {
       userId: currentUser.pets[0].userId,
@@ -47,23 +46,22 @@ function AllPetCard () {
       liked: true
     }
     const res = await API.createSwipe(data)
-    if (res.data.msg === "It's a match!"){
+    if (res.data.msg === "It's a match!") {
       setMatch('showMatch')
       setBtns('disabled')
-      setTimeout( ()=> {
+      setTimeout(() => {
         setCardAn('animate__animated animate__fadeOutRight')
         setMatch('hideMatch')
         store.dispatch(addPets(newPetState))
         store.dispatch(addRandomNum(undefined))
       }, 2000)
-      setTimeout(()=> {
+      setTimeout(() => {
         setBtns('')
         setCardAn('animate__animated animate__fadeInLeft')
       }, 2300)
-    }
-    else {
+    } else {
       setCardAn('animate__animated animate__fadeOutRight')
-      setTimeout(()=>{
+      setTimeout(() => {
         store.dispatch(addPets(newPetState))
         store.dispatch(addRandomNum(undefined))
         setCardAn('animate__animated animate__fadeInLeft')
@@ -71,7 +69,7 @@ function AllPetCard () {
     }
   }
   // Function for when user swipes left
-  const dislikedSwipe = async (e) => {
+  const dislikedSwipe = async e => {
     e.preventDefault()
     const data = {
       userId: currentUser.pets[0].userId,
@@ -82,25 +80,114 @@ function AllPetCard () {
     }
     const res = await API.createSwipe(data)
     setCardAn('animate__animated animate__fadeOutLeft')
-    setTimeout(()=>{
+    setTimeout(() => {
       store.dispatch(addPets(newPetState))
       store.dispatch(addRandomNum(undefined))
       setCardAn('animate__animated animate__fadeInRight')
     }, 300)
+  }
+
+  const likedSwipeTouch = async () => {
+    const data = {
+      userId: currentUser.pets[0].userId,
+      petId: currentUserPetID,
+      targetUserId: currentPet.userId,
+      targetPetId: currentPet._id,
+      liked: true
+    }
+    const res = await API.createSwipe(data)
+    if (res.data.msg === "It's a match!") {
+      setMatch('showMatch')
+      setBtns('disabled')
+      setTimeout(() => {
+        setCardAn('animate__animated animate__fadeOutRight')
+        setMatch('hideMatch')
+        store.dispatch(addPets(newPetState))
+        store.dispatch(addRandomNum(undefined))
+      }, 2000)
+      setTimeout(() => {
+        setBtns('')
+        setCardAn('animate__animated animate__fadeInLeft')
+      }, 2300)
+    } else {
+      setCardAn('animate__animated animate__fadeOutRight')
+      setTimeout(() => {
+        store.dispatch(addPets(newPetState))
+        store.dispatch(addRandomNum(undefined))
+        setCardAn('animate__animated animate__fadeInLeft')
+      }, 300)
+    }
+  }
+
+  const dislikedSwipeTouch = async () => {
+    const data = {
+      userId: currentUser.pets[0].userId,
+      petId: currentUserPetID,
+      targetUserId: currentPet.userId,
+      targetPetId: currentPet._id,
+      liked: false
+    }
+    const res = await API.createSwipe(data)
+    setCardAn('animate__animated animate__fadeOutLeft')
+    setTimeout(() => {
+      store.dispatch(addPets(newPetState))
+      store.dispatch(addRandomNum(undefined))
+      setCardAn('animate__animated animate__fadeInRight')
+    }, 300)
+  }
+
+  var xDown = null
+
+  function getTouches (evt) {
+    return (
+      evt.touches || evt.originalEvent.touches // browser API
+    ) // jQuery
+  }
+
+  function handleTouchStart (evt) {
+    const firstTouch = getTouches(evt)[0]
+    xDown = firstTouch.clientX
+  }
+
+  function handleTouchMove (evt) {
+    if (!xDown) {
+      return
+    }
+    var xUp = evt.changedTouches[0].clientX
+    var xDiff = xDown - xUp
+
+    if (Math.abs(xDiff)) {
+      /*most significant*/
+      if (xDiff > 0) {
+        /* left swipe */
+        if (xDiff > 90) {
+          dislikedSwipeTouch()
+        }
+      } else {
+        /* right swipe */
+        if (xDiff < -90) {
+          likedSwipeTouch()
+        }
+      }
+    }
+    /* reset values */
+    xDown = null
   }
   // Function to render pet cards if there are possible pets in array
   const renderCard = () => {
     if (possiblePets.length > 0) {
       return (
         <div>
-          <Row className='center' >
+          <Row
+            className='center'
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchMove}
+          >
             <Col className='center' s={12}>
               <Card
-                className= {cardAn}
+                className={cardAn}
                 closeIcon={<Icon>close</Icon>}
-                header={
-                  <CardTitle image={currentPet.image} reveal />
-                }
+                header={<CardTitle image={currentPet.image} reveal />}
                 reveal={<p> {currentPet.bio} </p>}
                 revealIcon={<Icon>more_vert</Icon>}
                 title={currentPet.name}
@@ -112,29 +199,29 @@ function AllPetCard () {
               </Card>
             </Col>
           </Row>
-          <Row className='center'>
+          <Row className='center hide-on-small-only'>
             <Col className='center' s={6}>
               <Button
-                className = { btns }
-                className="dislike-btn"
+                className={btns}
+                className='dislike-btn'
                 node='button'
                 style={{
                   marginRight: '5px'
                 }}
-                onClick = { dislikedSwipe }
+                onClick={dislikedSwipe}
               >
                 DisLike
               </Button>
             </Col>
             <Col className='center' s={6}>
               <Button
-                className = { btns } 
-                className = "like-btn"
+                className={btns}
+                className='like-btn'
                 node='button'
                 style={{
                   marginRight: '5px'
                 }}
-                onClick= { likedSwipe }
+                onClick={likedSwipe}
               >
                 Like
               </Button>
@@ -148,12 +235,12 @@ function AllPetCard () {
   }
   return (
     <div>
-      <div className={`animate__animated animate__heartBeat ${match}`}> 
+      <div className={`animate__animated animate__heartBeat ${match}`}>
         <h1> Its a match! </h1>
       </div>
       {renderCard()}
     </div>
-    )
+  )
 }
 
 export default AllPetCard

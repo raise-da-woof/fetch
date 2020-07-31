@@ -20,3 +20,13 @@
     font-size: 23px;
 }
 
+.back-btn i,
+.exit-btn i {
+    display: inline !important;
+    font-size: 36px !important;
+}
+
+nav ul a:hover {
+    background: transparent;
+}
+

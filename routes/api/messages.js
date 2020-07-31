@@ -3,11 +3,10 @@ const messagesController = require("../../controllers/messagesController");
 
 // Matches with "/api/messages"
 router.route("/")
-  .get(messagesController.findAll)
   .post(messagesController.create);
 
 // Matches with "/api/messages/:id"
 router.route("/:id")
-  .get(messagesController.findById)
+  .post(messagesController.findAllByThread)
 
 module.exports = router;

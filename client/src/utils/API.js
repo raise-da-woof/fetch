@@ -70,5 +70,11 @@ export default {
   createSwipe: function(swipeData) {
     return axios.post('/api/swipes', swipeData)
   },
+
+  // SWIPE
+  // Create swipe 
+  getMessagesInThread: function(id, threadId) {
+    return axios.post('/api/messages' + id, threadId)
+  },
   
 };

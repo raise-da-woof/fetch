@@ -59,3 +59,10 @@ export function addRandomNum (payload){
     payload
   }
 }
+
+export function setCurrentThread (payload){
+  return {
+    type: 'SET_CURRENT_THREAD',
+    payload
+  }
+}

@@ -4,13 +4,13 @@ import Home from './pages/Home/index'
 import Profile from './pages/Profile'
 import Messages from './pages/Messages'
 import OurMission from './pages/OurMission'
-import MettTheTeam from './pages/MeetTheTeam'
+import MeetTheTeam from './pages/MeetTheTeam'
+import Thread from './pages/Thread';
 import NoMatch from "./pages/NoMatch";
 import Nav from "./components/Nav";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import PrivateRoute from './components/PrivateRoute'
 import './style.css'
-import MeetTheTeam from "./pages/MeetTheTeam";
 import FetchFooter  from "./components/Footer/"
 
 function App() {
@@ -26,6 +26,7 @@ function App() {
         <PrivateRoute path="/match">
           <Route exact path="/match" component={Home} /> 
         </PrivateRoute >
+        <PrivateRoute exact path="/thread" component={Thread} />
         <PrivateRoute exact path='/profile' component={Profile} />
         <PrivateRoute exact path='/messages' component={Messages} />
         <Route>

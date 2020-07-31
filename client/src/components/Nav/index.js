@@ -28,6 +28,27 @@ function Nav () {
           </div>
         </nav>    
       )
+    } else if (pathname === '/thread') {
+      return (
+        <nav>
+          <div className='nav-wrapper pink darken-2 back-btn'>
+            <Link to='/messages'>
+            <Icon>
+              navigate_before
+            </Icon>
+            </Link>
+            <ul id='nav-mobile' className='right'>
+              <li className="exit-btn">
+                <Link to='/match'>
+                <Icon href='/home'>
+                  close
+                </Icon>
+                </Link>
+              </li>
+            </ul>
+          </div>
+        </nav>    
+      );
     } else if ( possiblePaths.includes(pathname) ) {
       return (
         <Navbar

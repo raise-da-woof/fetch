@@ -4,11 +4,11 @@ const Schema = mongoose.Schema;
 const messageSchema = new Schema({
   sender: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
+    ref: "Pet",
   },
   receiver: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
+    ref: "Pet",
   },
   dateSent: {
     type: Date,

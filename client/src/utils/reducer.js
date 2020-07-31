@@ -51,6 +51,11 @@ export default function reducer (state = {}, action) {
         ...state,
         randomNumber: action.payload
       }
+    case 'SET_CURRENT_THREAD':
+      return {
+        ...state,
+        thread: action.payload
+      }
     default:
       return state
   }

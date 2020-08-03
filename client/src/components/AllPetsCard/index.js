@@ -136,27 +136,46 @@ function AllPetCard () {
     }, 300)
   }
 
+  function disableScroll() { 
+    // Get the current page scroll position 
+    let scrollTop = window.pageYOffset || document.documentElement.scrollTop
+    let scrollLeft = window.pageXOffset || document.documentElement.scrollLeft
+    // if any scroll is attempted, set this to the previous value 
+    window.onscroll = function() { 
+      window.scrollTo(scrollLeft, scrollTop); 
+    }; 
+  } 
+  
+  function enableScroll() { 
+    window.onscroll = function() {}; 
+  } 
+
   var xDown = null
+  var yDown = null;
 
   function getTouches (evt) {
     return (
-      evt.touches || evt.originalEvent.touches // browser API
-    ) // jQuery
+      evt.touches || evt.originalEvent.touches
+    )
   }
 
   function handleTouchStart (evt) {
     const firstTouch = getTouches(evt)[0]
     xDown = firstTouch.clientX
+    yDown = firstTouch.clientY;
+    disableScroll()
   }
 
   function handleTouchMove (evt) {
-    if (!xDown) {
+    if (!xDown || !yDown) {
       return
     }
-    var xUp = evt.changedTouches[0].clientX
-    var xDiff = xDown - xUp
+    let xUp = evt.changedTouches[0].clientX
+    let yUp = evt.changedTouches[0].clientY;
+    let xDiff = xDown - xUp
+    let yDiff = yDown - yUp
 
-    if (Math.abs(xDiff)) {
+    if (Math.abs(xDiff) > Math.abs( yDiff )) {
       /*most significant*/
       if (xDiff > 0) {
         /* left swipe */
@@ -169,9 +188,13 @@ function AllPetCard () {
           likedSwipeTouch()
         }
       }
+    } else {
+      enableScroll()
     }
     /* reset values */
     xDown = null
+    yDown = null
+    enableScroll()
   }
   // Function to render pet cards if there are possible pets in array
   const renderCard = () => {

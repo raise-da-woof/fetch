@@ -1,0 +1,21 @@
+.current-conversation {
+    box-shadow: 2px 0px 10px rgba(0,0,0,.1);
+    height: 100vh;
+    max-height: 700px;
+    background-color: #fffafc;
+}
+
+.row .col.current-conversation {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+@media only screen and (max-width: 700px) {
+    .row .col.current-conversation {
+        width: 100%;
+        margin-left: auto;
+        left: auto;
+        right: auto;
+    }
+  }
+  

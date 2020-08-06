@@ -1,0 +1,13 @@
+.conversations {
+    box-shadow: 2px 0px 10px rgba(0,0,0,.1);
+    background: linear-gradient(300deg, #ff7854, #fd267d); 
+    height: 100vh;
+    max-height: 700px;
+    overflow: scroll;
+}
+
+@media only screen and (max-width: 700px) {
+    .conversations {
+      display: none;
+    }
+  }

@@ -1,0 +1,27 @@
+.messages-list-item {
+    padding: .5rem .75rem 0;
+}
+
+.messages-list-item:hover {
+    background-color: rgba(255, 244, 248, 1);
+}
+
+.messages-list-item h6 {
+    display: inline;
+    font-family: unset;
+}
+
+.messages-list-item span {
+    color: rgba(0,0,0,.5);
+    font-size: .75rem;
+    padding-left: .5rem;
+}
+
+.messages-list-item p {
+    display: inline-block;
+    color: black;
+    background-color: white;
+    padding: .5rem;
+    border-radius: 0 10px 10px 10px;
+    box-shadow: 2px 2px 20px rgba(0,0,0,.1);
+}

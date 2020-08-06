@@ -1,0 +1,23 @@
+.messages-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: .75rem;
+    margin: 0;
+    border-bottom: 1px solid rgba(0,0,0,.1)
+}
+
+.messages-header i {
+    color: black;
+    font-size: 3rem;
+    color: #fd267d;
+}
+
+.messages-header div h4 {
+    margin-bottom: 0;
+}
+
+.messages-header div p {
+    margin-top: 0;
+    font-size: .9rem;
+}

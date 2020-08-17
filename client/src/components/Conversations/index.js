@@ -9,7 +9,7 @@ import "./style.css";
 export default function Conversations () {
   
     return (
-        <Col m={4} s={12} className="conversations">
+        <Col m={4} s={4} className="conversations">
           <MyUserDetails />
           <ConversationsList />
         </Col>

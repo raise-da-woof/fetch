@@ -19,7 +19,7 @@ export default function MessagesHeader() {
 
   return ( 
     <div className="messages-header">
-        <a><Icon>navigate_before</Icon></a>
+        <a className="navigate-back"><Icon>navigate_before</Icon></a>
         <div>
             <h4>{ currentConversation.name }</h4>
             <p>{renderDescription(currentConversation)}</p>

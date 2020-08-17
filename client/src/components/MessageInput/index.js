@@ -9,7 +9,7 @@ export default function MessageInput() {
 
   return ( 
     <div className="message-input">
-        <Textarea s={12} id="message-content" placeholder="message..." />
+        <input id="message-content" type="text" placeholder="message..." />
     </div>
   )
 }

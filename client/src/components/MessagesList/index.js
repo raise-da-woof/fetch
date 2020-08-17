@@ -28,6 +28,31 @@ export default function MessagesList() {
       dateSent: "2020-07-20 00:08:32.319Z",
       content: "message 4"
     },
+    {
+      sender: "Nemmy",
+      dateSent: "2020-07-20 00:08:32.319Z",
+      content: "message 5 fjdaklfjdklsajfkldsjaflsdjafkljaslfjlskdajfsd"
+    },
+    {
+      sender: "Tucker",
+      dateSent: "2020-07-20 00:08:32.319Z",
+      content: "message 6"
+    },
+    {
+      sender: "Nemmy",
+      dateSent: "2020-07-20 00:08:32.319Z",
+      content: "message 7 fjdaklfjdklsajfkldsjaflsdjafkljaslfjlskdajfsd"
+    },
+    {
+      sender: "Tucker",
+      dateSent: "2020-07-20 00:08:32.319Z",
+      content: "message 8"
+    },
+    {
+      sender: "Nemmy",
+      dateSent: "2020-07-20 00:08:32.319Z",
+      content: "message 9 fjdaklfjdklsajfkldsjaflsdjafkljaslfjlskdajfsd"
+    },
   ]
 
   return ( 

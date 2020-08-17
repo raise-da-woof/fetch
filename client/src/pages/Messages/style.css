@@ -9,3 +9,7 @@
     width: 100%;
   }
 }
+
+.messages div.row {
+  margin-bottom: 0;
+}
